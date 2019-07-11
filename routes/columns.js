@@ -20,7 +20,7 @@ router.get('/:id', (req, res, next) => {
 router.post('/', (req, res, next) => {
     db.collection('columns').insertOne({  
         content: req.body.content, 
-        id: req.body.id
+        boardId: req.body.id
     });
     res.send('OK');
 })

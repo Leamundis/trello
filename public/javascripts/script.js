@@ -85,6 +85,28 @@ function newBoard() {
     });
 }
 
+function newColumn() {
+    event.stopPropagation();
+    event.preventDefault();
+    let board = document.querySelector('#newBoard form input').value;
+    let method = document.querySelector('#newBoard form').getAttribute('method');
+
+    fetch("/columns", {
+        credentials: 'same-origin',
+        method: method,
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({column: column})
+    })
+    .then(res => res.text())
+    .then(res => {
+        if (res == "OK") {
+            //loader();
+        }
+    });
+}
+
 const loader = () => {
     if(document.querySelector('#btn-logout')) {
         fetch("/boards", {

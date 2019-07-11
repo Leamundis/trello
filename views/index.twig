@@ -69,10 +69,10 @@
         <div class="oneBoardMenu justify-content-around">
             <h1 id="oneBoardName"></h1>
             <div id="addColumn">
-                <form action="/column/create" method="POST" onsubmit="newcolumn()" class="container center">
+                <form action="/column/create" method="POST" onsubmit="newColumn()" class="container center">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="columnName" placeholder="Ajouter une colonne">
-                        <button type="submit" class="btn btn-primary">Créer</button>
+                        <input type="text" class="form-control" name="columnName" placeholder="Ajouter une colonne" required>
+                        <button type="submit" class="btn btn-primary">+</button>
                     </div>
                 </form>
             </div>
