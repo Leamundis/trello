@@ -52,7 +52,14 @@
 </div>
 <div id="boardArea" class="d-flex justify-content-center flex-column align-items-center {{user and user.login ?: 'hidden' }}">
     <button type="submit" class="btn btn-primary" id="btn-addBoard">Ajouter un tableau</button>
-    <div id="boadsList"></div>
+    
+    {# Display all boards #}
+    <div id="boardsList" class="d-flex flex-wrap"></div>
+    
+    {# Display content of one board #}
+    <div id="oneBoard" class=""></div>
+    
+    {# Create a new board #}
     <div id="newBoard" class="hidden">
         <form action="/boards/create" method="POST" onsubmit="newBoard()" class="container center">
             <div class="form-group">

@@ -5,9 +5,11 @@ if (document.querySelector('.btn-register')) {
     });
 }
 
+
+
 if (document.querySelector('#btn-addBoard')) {
     document.querySelector('#btn-addBoard').addEventListener('click', () => {
-        document.querySelector('#boadsList').classList.add('hidden');
+        document.querySelector('#boardsList').classList.add('hidden');
         document.querySelector('#btn-addBoard').classList.add('hidden');
         document.querySelector('#newBoard').classList.remove('hidden');
     });
@@ -41,24 +43,22 @@ function loginCheck(event) {
 }
 
 function newBoard() {
-    debugger;
     event.stopPropagation();
     event.preventDefault();
-    let tweet = document.querySelector('#newBoard form input').value;
+    let board = document.querySelector('#newBoard form input').value;
     let method = document.querySelector('#newBoard form').getAttribute('method');
 
-    fetch("/tweets", {
+    fetch("/boards", {
         credentials: 'same-origin',
         method: method,
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({tweet: tweet})
+        body: JSON.stringify({board: board})
     })
     .then(res => res.text())
     .then(res => {
         if (res == "OK") {
-            //io.connect('http://localhost:8080/');
             loader();
         }
     });
@@ -71,15 +71,25 @@ const loader = () => {
         })
         .then(res => res.json())
         .then(res => {
-            if(res) {
+            if(res.length > 0) {
                 const boards = res;
-                document.querySelector('.boardsArea').innerHTML = 'test';
-
+                document.querySelector('#boardsList').innerHTML = '';
                 boards.forEach(board => {
-                    
+                    let div = document.createElement("div");
+                    div.setAttribute("id", board._id);
+                    div.setAttribute("class", 'card col-3 id' + board._id);
+                    document.querySelector('#boardsList').appendChild(div);
+
+                    let name = document.createElement("div");
+                    name.setAttribute("class", 'card-body');
+                    name.innerHTML = board.name;
+                    document.querySelector('.id' + board._id).appendChild(name);
                 });
+                document.querySelector('#boardsList').classList.remove('hidden');
+                document.querySelector('#btn-addBoard').classList.remove('hidden');
+                document.querySelector('#newBoard').classList.add('hidden');
             } else {
-                // pas de board à afficher
+                document.querySelector('#boardsList').innerHTML = 'Vous n\'avez pas encore de tableau. N\'héssitez pas à tester le gros button bleu ci-dessus!';
             }
             //console.log(res);
         })

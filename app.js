@@ -19,7 +19,7 @@ app.set('view engine', 'twig');
 
 // session
 app.set('trust proxy', 1);
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({ secret: 'JavaScript and Java, nearly the same thing' }));
 
 app.use(logger('dev'));
 app.use(express.json());

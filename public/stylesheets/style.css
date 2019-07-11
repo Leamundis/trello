@@ -11,6 +11,10 @@ body {
   body #displayLogin .btn-register {
     color: blue;
     cursor: pointer; }
+  body #boardArea #boardsList .card {
+    cursor: pointer; }
+  body #boardArea #btn-addBoard {
+    margin: 20px 0; }
 
 a {
   color: #00B7FF; }
