@@ -1,0 +1,66 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <div class="container center">
+    <ul class="nav justify-content-between">
+        <h1>{{title}}</h1>
+        <div class="nav {{user and user.login ?: 'hidden' }}" id="navbar">
+            <li class="nav-item">
+                <p class="nav-link">{{ user.login }}</p>
+            </li>
+            <li class="nav-item">
+                <a id="btn-logout" class="nav-link" href="/users/logout">Logout</a>
+            </li>
+        </div>
+    </ul>
+</div>
+<div id="displayLogin" class="{{user and user.login ? 'hidden' : '' }}">
+    <div id="login-form">
+        <form class="container center" onsubmit="loginCheck(event)" method="POST">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" class="form-control" name="login" id="login" placeholder="Nom d'utilisateur" value="Jon">
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Mot de passe" value="1234">
+            </div>
+            <button type="submit" class="center btn btn-outline-primary rounded-pill">Se connecter</button>
+        </form>
+        <p>{{error}}</p>
+        <div class="d-flex justify-content-center">
+            <small>Vous n'avez pas de compte? Créez-en un <span class="btn-register">ici</span> !</small>
+        </div>
+    </div>
+    <div class="hidden" id="register-form">
+        <form action="/users/create" method="POST" class="container center">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" class="form-control" name="login" id="registerLogin" placeholder="Nom d'utilisateur" value="Jon">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" name="email" id="registerEmail" placeholder="Email" value="j@j.fr">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Mot de passe</label>
+                <input type="password" class="form-control" name="password" id="registerPassword" placeholder="Mot de passe" value="1234">
+            </div>
+            <button type="submit" class="btn btn-primary">Créer</button>
+        </form>
+    </div>
+</div>
+<div id="boardArea" class="d-flex justify-content-center flex-column align-items-center {{user and user.login ?: 'hidden' }}">
+    <button type="submit" class="btn btn-primary" id="btn-addBoard">Ajouter un tableau</button>
+    <div id="boadsList"></div>
+    <div id="newBoard" class="hidden">
+        <form action="/boards/create" method="POST" onsubmit="newBoard()" class="container center">
+            <div class="form-group">
+                <label for="boardName">Nom du tableau</label>
+                <input type="text" class="form-control" name="boardName" placeholder="Nom du tableau">
+            </div>
+            <button type="submit" class="btn btn-primary">Créer</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
