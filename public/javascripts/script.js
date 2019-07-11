@@ -5,7 +5,28 @@ if (document.querySelector('.btn-register')) {
     });
 }
 
-
+if (document.querySelector('#boardsList')) {
+    document.querySelector('#boardsList').addEventListener('click', (el) => {
+        el = el.target;
+        if(el.id !== '') {
+            id = el.id;
+        } else if (el.parentElement.id !== '') {
+            id = el.parentElement.id;
+        }
+        fetch("/boards/" + id, {
+            credentials: 'same-origin'
+        })
+        .then(res => res.json())
+        .then(res => {
+            id = res._id;
+            name = res.name;
+            document.querySelector('#boardsList').classList.add('hidden');
+            document.querySelector('#newBoard').classList.add('hidden');
+            document.querySelector('#oneBoard').classList.remove('hidden');
+            document.querySelector('#oneBoardName').innerHTML = name;
+        })
+    });
+}
 
 if (document.querySelector('#btn-addBoard')) {
     document.querySelector('#btn-addBoard').addEventListener('click', () => {
@@ -77,8 +98,12 @@ const loader = () => {
                 boards.forEach(board => {
                     let div = document.createElement("div");
                     div.setAttribute("id", board._id);
-                    div.setAttribute("class", 'card col-3 id' + board._id);
+                    div.setAttribute("class", 'card col-2 id' + board._id);
                     document.querySelector('#boardsList').appendChild(div);
+
+                    let emptyDiv = document.createElement("div");
+                    emptyDiv.setAttribute("class", 'col-1');
+                    document.querySelector('#boardsList').appendChild(emptyDiv);
 
                     let name = document.createElement("div");
                     name.setAttribute("class", 'card-body');

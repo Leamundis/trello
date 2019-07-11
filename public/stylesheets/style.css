@@ -6,15 +6,36 @@
   display: none !important; }
 
 body {
+  background-image: URL("../images/grey.png");
+  height: 100vh;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
-  body #displayLogin .btn-register {
-    color: blue;
-    cursor: pointer; }
+  body .card {
+    background-image: URL("../images/snow.png"); }
+  body #displayLogin {
+    margin-top: 200px; }
+    body #displayLogin form {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+    body #displayLogin .btn-register {
+      color: blue;
+      cursor: pointer; }
+  body #boardArea #newBoard {
+    margin-bottom: 50px; }
+    body #boardArea #newBoard .form-group {
+      margin-bottom: 0; }
   body #boardArea #boardsList .card {
-    cursor: pointer; }
+    cursor: pointer;
+    margin-bottom: 30px; }
   body #boardArea #btn-addBoard {
     margin: 20px 0; }
+  body #boardArea #oneBoard {
+    width: 100%; }
+    body #boardArea #oneBoard .oneBoardMenu {
+      display: flex; }
+      body #boardArea #oneBoard .oneBoardMenu .form-group {
+        display: flex; }
 
 a {
   color: #00B7FF; }

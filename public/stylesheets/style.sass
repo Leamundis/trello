@@ -6,18 +6,38 @@
     display: none!important
 
 body 
+    .card 
+        background-image: URL("../images/snow.png")
+
+    background-image: URL("../images/grey.png")
+    height: 100vh
     padding: 50px
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
     #displayLogin
+        margin-top: 200px
+        form
+            display: flex
+            flex-direction: column
+            align-items: center
         .btn-register
             color: blue
             cursor: pointer
     #boardArea
+        #newBoard
+            margin-bottom: 50px
+            .form-group
+                margin-bottom: 0
         #boardsList
             .card
                 cursor: pointer
+                margin-bottom: 30px
         #btn-addBoard
             margin: 20px 0
-
+        #oneBoard
+            width: 100%
+            .oneBoardMenu
+                display: flex
+                .form-group
+                    display: flex
 a
     color: #00B7FF

@@ -16,7 +16,7 @@
 </div>
 <div id="displayLogin" class="{{user and user.login ? 'hidden' : '' }}">
     <div id="login-form">
-        <form class="container center" onsubmit="loginCheck(event)" method="POST">
+        <form class="container center col-6" onsubmit="loginCheck(event)" method="POST">
             <div class="form-group">
                 <label for="username">Nom d'utilisateur</label>
                 <input type="text" class="form-control" name="login" id="login" placeholder="Nom d'utilisateur" value="Jon">
@@ -51,23 +51,32 @@
     </div>
 </div>
 <div id="boardArea" class="d-flex justify-content-center flex-column align-items-center {{user and user.login ?: 'hidden' }}">
-    <button type="submit" class="btn btn-primary" id="btn-addBoard">Ajouter un tableau</button>
+    {# Create a new board #}
+    <div id="newBoard" class="">
+        <form action="/boards/create" method="POST" onsubmit="newBoard()" class="container center d-flex">
+            <div class="form-group">
+                <input type="text" class="form-control" name="boardName" placeholder="Nom du tableau">
+            </div>
+            <button type="submit" class="btn btn-primary">Créer</button>
+        </form>
+    </div>
     
     {# Display all boards #}
     <div id="boardsList" class="d-flex flex-wrap"></div>
     
     {# Display content of one board #}
-    <div id="oneBoard" class=""></div>
-    
-    {# Create a new board #}
-    <div id="newBoard" class="hidden">
-        <form action="/boards/create" method="POST" onsubmit="newBoard()" class="container center">
-            <div class="form-group">
-                <label for="boardName">Nom du tableau</label>
-                <input type="text" class="form-control" name="boardName" placeholder="Nom du tableau">
+    <div id="oneBoard" class="hidden">
+        <div class="oneBoardMenu justify-content-around">
+            <h1 id="oneBoardName"></h1>
+            <div id="addColumn">
+                <form action="/column/create" method="POST" onsubmit="newcolumn()" class="container center">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="columnName" placeholder="Ajouter une colonne">
+                        <button type="submit" class="btn btn-primary">Créer</button>
+                    </div>
+                </form>
             </div>
-            <button type="submit" class="btn btn-primary">Créer</button>
-        </form>
+        </div>
     </div>
 </div>
 {% endblock %}
